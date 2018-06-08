@@ -10,7 +10,7 @@
 #include <string.h>
 #include "palindrome.h"
 
-char *revstr(char *str)
+char *revstr(char *str, int f)
 {
 	int i = strlen(str);
 	char *new = malloc(sizeof(char) * (i + 1));
@@ -20,7 +20,8 @@ char *revstr(char *str)
 	while (i >= 0)
 		new[a++] = str[i--];
 	new[a] = '\0';
-	free(str);
+	if (f == 0)
+		free(str);
 	return (new);
 }
 
@@ -32,7 +33,6 @@ char *int_to_str(int nb)
 
 	if (res == NULL)
 		return (NULL);
-	res[size] = '\0';
 	if (nb < 0) {
 		type = 1;
 		res[size - 1] = '-';
@@ -42,7 +42,8 @@ char *int_to_str(int nb)
 		res[cnt] = (nb % 10) + '0';
 		nb /= 10;
 	}
-	return (revstr(res));
+	res[size] = '\0';
+	return (revstr(res, 0));
 }
 
 int error(void)

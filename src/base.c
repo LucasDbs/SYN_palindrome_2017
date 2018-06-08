@@ -12,7 +12,7 @@
 char *base_transform(char *convert, int act_base, int base)
 {
 	int new_nb = strtol(convert, NULL, act_base);
-	char *res = malloc(sizeof(char) * strlen(convert) + 1);
+	char *res = malloc(sizeof(char) * 200);
 	int a = 0;
 	int save = 0;
 
@@ -22,7 +22,8 @@ char *base_transform(char *convert, int act_base, int base)
 		new_nb = save;
 	}
 	res[a] = '\0';
-	return (revstr(res));
+	free(convert);
+	return (revstr(res, 0));
 }
 
 char *equal(char *str, int lenght)
@@ -36,7 +37,8 @@ char *equal(char *str, int lenght)
 	while (a != (lenght))
 		res[a++] = '0';
 	res[a] = '\0';
-	return (revstr(res));
+	free(str);
+	return (revstr(res, 0));
 }
 
 int calc_base(char *res, char *str1, char *str2, int base)
@@ -50,7 +52,7 @@ int calc_base(char *res, char *str1, char *str2, int base)
 		save = (str1[i] - '0') + (str2[i] - '0') + retenu;
 		if (save >= base) {
 			retenu = 1;
-			res[a++] = '0';
+			res[a++] = (save - base) + '0';
 		} else {
 			res[a++] = save + '0';
 			retenu = 0;
@@ -72,5 +74,5 @@ char *add_str(char *str1, char *str2, int base)
 	else if (strlen(str1) < strlen(str2))
 		str1 = equal(str1, strlen(str2));
 	calc_base(res, str1, str2, base);
-	return (revstr(res));
+	return (revstr(res, 0));
 }

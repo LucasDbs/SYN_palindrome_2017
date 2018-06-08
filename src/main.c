@@ -6,6 +6,7 @@
 */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "palindrome.h"
 
 int main(int ac, char **av)
@@ -14,7 +15,12 @@ int main(int ac, char **av)
 
 	if (arg == NULL || pars_opt(ac, av, arg) == 1)
 		return (84);
-	else
+	else {
 		manage_opt(arg);
+		free(arg->nb);
+		free(arg->pal);
+		free(arg);
+		return (0);
+	}
 	return (0);
 }

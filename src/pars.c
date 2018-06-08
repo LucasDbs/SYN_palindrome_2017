@@ -23,7 +23,8 @@ int check_struct(arg_s *arg)
 {
 	if (arg->nb != NULL && arg->pal != NULL)
 		return (error());
-	else if (arg->base > 10 || arg->base < 1)
+	else if ((arg->base > 10 || arg->base < 1)
+		|| (arg->min > arg->max))
 		return (error());
 	else
 		return (last_check(arg));
@@ -53,10 +54,5 @@ int pars_opt(int ac, char **av, arg_s *arg)
 		else if (add_to_struct(arg, c, optarg) == 1)
 			return (1);
 	}
-/*	printf("arg->nb = %d\n", arg->nb);
-	printf("arg->pal = %d\n", arg->pal);
-	printf("arg->base = %d\n", arg->base);
-	printf("arg->min = %d\n", arg->min);
-	printf("arg->max = %d\n", arg->max);*/
 	return (check_struct(arg));
 }

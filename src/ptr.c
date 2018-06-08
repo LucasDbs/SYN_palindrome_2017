@@ -39,5 +39,6 @@ int add_to_struct(arg_s *arg, char c, char *optarg)
 			return (check[a].ptr(arg, optarg));
 		a++;
 	}
+	free(check);
 	return (0);
 }

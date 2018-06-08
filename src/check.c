@@ -13,7 +13,7 @@ int check_nb(int nb)
 
 	if (nb < 0)
 		nb *= -1;
-	while (nb > 10) {
+	while (nb >= 10) {
 		nb = nb / 10;
 		i++;
 	}

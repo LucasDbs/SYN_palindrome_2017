@@ -15,7 +15,9 @@ SRC	=	src/main.c		\
 		src/add_struct.c	\
 		src/other.c		\
 		src/check.c		\
-		src/opt.c
+		src/opt.c		\
+		src/free.c		\
+		src/print.c
 
 OBJ	=	$(SRC:.c=.o)
 
