@@ -10,8 +10,8 @@
 
 typedef struct arg_s
 {
-	int nb;
-	int pal;
+	char *nb;
+	char *pal;
 	int base;
 	int min;
 	int max;
@@ -33,5 +33,9 @@ int add_max(arg_s *, char *);
 int add_to_struct(arg_s *, char, char *);
 int is_valid(char *);
 int error(void);
+int manage_opt(arg_s *);
+char *revstr(char *);
+int check_nb(int);
+int is_palindrome(char *);
 
 #endif

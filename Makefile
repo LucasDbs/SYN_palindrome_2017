@@ -12,7 +12,10 @@ SRC	=	src/main.c		\
 		src/pars.c		\
 		src/ptr.c		\
 		src/base.c		\
-		src/add_struct.c
+		src/add_struct.c	\
+		src/other.c		\
+		src/check.c		\
+		src/opt.c
 
 OBJ	=	$(SRC:.c=.o)
 

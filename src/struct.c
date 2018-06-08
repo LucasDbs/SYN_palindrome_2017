@@ -14,9 +14,9 @@ arg_s *default_arg(void)
 
 	if (new == NULL)
 		return (NULL);
-	new->nb = -1;
-	new->pal = -1;
-	new->base = -1;
+	new->nb = NULL;
+	new->pal = NULL;
+	new->base = 10;
 	new->min = 0;
 	new->max = 100;
 	return (new);

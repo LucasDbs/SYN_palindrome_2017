@@ -5,7 +5,6 @@
 ** Main function
 */
 
-#include <stdlib.h>
 #include <stdio.h>
 #include "palindrome.h"
 
@@ -15,5 +14,7 @@ int main(int ac, char **av)
 
 	if (arg == NULL || pars_opt(ac, av, arg) == 1)
 		return (84);
+	else
+		manage_opt(arg);
 	return (0);
 }

@@ -5,12 +5,10 @@
 ** Ptr functions
 */
 
-#include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include "palindrome.h"
 
-ptr_s init_struct(char c, int (*ptr) (arg_s *, char *))
+ptr_s init_struct(char c, int (*ptr)(arg_s *, char *))
 {
 	ptr_s new;
 
@@ -31,7 +29,7 @@ ptr_s *init_ptr(void)
 	return (new);
 }
 
-int add_to_struct(arg_s * arg, char c, char *optarg)
+int add_to_struct(arg_s *arg, char c, char *optarg)
 {
 	ptr_s *check = init_ptr();
 	int a = 0;

@@ -9,19 +9,29 @@
 #include <stdio.h>
 #include "palindrome.h"
 
-int last_check(arg_s * arg)
+int last_check(arg_s *arg)
 {
-	if (arg->nb != -1 && arg->pal != -1)
-		return (1);
-	else if (arg->max > 100)
-		return (1);
+	if (is_palindrome(arg->pal) == 1)
+		return (error());
+	else if (arg->nb == NULL && arg->pal == NULL)
+		return (error());
 	else
 		return (0);
 }
 
+int check_struct(arg_s *arg)
+{
+	if (arg->nb != NULL && arg->pal != NULL)
+		return (error());
+	else if (arg->base > 10 || arg->base < 1)
+		return (error());
+	else
+		return (last_check(arg));
+}
+
 struct option *init_option()
 {
-	static struct option new[] = 
+	static struct option new[] =
 		{{"n", 1, NULL, 'n'},
 		{"p", 1, NULL, 'p'},
 		{"b", 1, NULL, 'b'},
@@ -31,7 +41,7 @@ struct option *init_option()
 	return (new);
 }
 
-int pars_opt(int ac, char **av, arg_s * arg)
+int pars_opt(int ac, char **av, arg_s *arg)
 {
 	struct option *tab_opt = init_option();
 	int c = 0;
@@ -48,5 +58,5 @@ int pars_opt(int ac, char **av, arg_s * arg)
 	printf("arg->base = %d\n", arg->base);
 	printf("arg->min = %d\n", arg->min);
 	printf("arg->max = %d\n", arg->max);*/
-	return (last_check(arg));
+	return (check_struct(arg));
 }
