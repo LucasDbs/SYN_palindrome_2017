@@ -94,7 +94,10 @@ int manage_opt(arg_s *arg)
 
 	if (arg->nb != NULL)
 		opt_n(arg, reverse, convert);
-	else
+	else {
+		if (arg->min == 0 && arg->max == 0)
+			return (p_print("0", arg));
 		opt_p(arg);
+	}
 	return (0);
 }

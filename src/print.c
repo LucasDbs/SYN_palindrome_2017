@@ -18,11 +18,10 @@ int n_print(char *tmp, char *s, int i, int b)
 	return (0);	
 }
 
-int p_print(char *str, arg_s *arg)
+int p_print(char *s, arg_s *a)
 {
-//	printf("arg->min = %d\n", arg->min);
-//	printf("arg->it = %d\n", arg->it);
-	if (arg->it >= arg->min)
-		printf("%s leads to %s in %d iteration(s) in base %d\n", str, arg->pal, arg->it, arg->base);
+	if (a->it >= a->min)
+		printf("%s leads to %s in %d iteration(s) in base %d\n"
+			, s, a->pal, a->it, a->base);
 	return (0);	
 }
