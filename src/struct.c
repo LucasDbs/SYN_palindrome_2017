@@ -19,5 +19,6 @@ arg_s *default_arg(void)
 	new->base = 10;
 	new->min = 0;
 	new->max = 100;
+	new->it = 0;
 	return (new);
 }

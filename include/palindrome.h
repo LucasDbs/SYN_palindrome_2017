@@ -15,6 +15,7 @@ typedef struct arg_s
 	int base;
 	int min;
 	int max;
+	int it;
 } arg_s;
 
 typedef struct ptr_s
@@ -37,12 +38,13 @@ int manage_opt(arg_s *);
 char *revstr(char *, int);
 int check_nb(int);
 int is_palindrome(char *);
-char *base_transform(char *, int, int);
+char *base_transform(char *, int, int, int);
 char *add_str(char *, char *, int);
 int special_free(char *, char *);
 int free_all(char *, char *);
 char *int_to_str(int);
 int n_print(char *, char *, int, int);
-int p_print(char *, arg_s *, int);
+int p_print(char *, arg_s *);
+int pal_check(char *, int);
 
 #endif

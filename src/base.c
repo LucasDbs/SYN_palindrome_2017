@@ -9,7 +9,7 @@
 #include <string.h>
 #include "palindrome.h"
 
-char *base_transform(char *convert, int act_base, int base)
+char *base_transform(char *convert, int act_base, int base, int f)
 {
 	int new_nb = strtol(convert, NULL, act_base);
 	char *res = malloc(sizeof(char) * 200);
@@ -22,7 +22,8 @@ char *base_transform(char *convert, int act_base, int base)
 		new_nb = save;
 	}
 	res[a] = '\0';
-	free(convert);
+	if (f == 0)
+		free(convert);
 	return (revstr(res, 0));
 }
 

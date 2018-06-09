@@ -56,7 +56,7 @@ int is_valid(char *str)
 {
 	int i = 0;
 
-	if (str[0] == '-')
+	if (strlen(str) > 9)
 		return (error());
 	while (str[i] != '\0') {
 		if (str[i] >= '0' && str[i] <= '9')

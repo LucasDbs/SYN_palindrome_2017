@@ -6,6 +6,9 @@
 */
 
 #include <string.h>
+#include "palindrome.h"
+
+#include <stdio.h>
 
 int check_nb(int nb)
 {
@@ -35,4 +38,17 @@ int is_palindrome(char *str)
 		i++;
 	}
 	return (0);
+}
+
+int pal_check(char *str, int base)
+{
+	char *tmp = NULL;
+
+	if (str == NULL)
+		return (0);
+	tmp = base_transform(str, 10, base, 1);
+	if (is_palindrome(tmp) == 0)
+		return (0);
+	else
+		return (1);
 }

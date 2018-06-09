@@ -11,7 +11,7 @@
 
 int last_check(arg_s *arg)
 {
-	if (is_palindrome(arg->pal) == 1)
+	if (pal_check(arg->pal, arg->base) != 0)
 		return (error());
 	else if (arg->nb == NULL && arg->pal == NULL)
 		return (error());
@@ -23,14 +23,14 @@ int check_struct(arg_s *arg)
 {
 	if (arg->nb != NULL && arg->pal != NULL)
 		return (error());
-	else if ((arg->base > 10 || arg->base < 1)
+	else if ((arg->base > 10 || arg->base <= 1)
 		|| (arg->min > arg->max))
 		return (error());
 	else
 		return (last_check(arg));
 }
 
-struct option *init_option()
+struct option *init_option(void)
 {
 	static struct option new[] =
 		{{"n", 1, NULL, 'n'},
@@ -48,6 +48,8 @@ int pars_opt(int ac, char **av, arg_s *arg)
 	int c = 0;
 
 	opterr = 0;
+	if ((ac % 2) == 0)
+		return (error());
 	while ((c = getopt_long_only(ac, av, "", tab_opt, NULL)) != -1) {
 		if (c == '?')
 			return (error());
