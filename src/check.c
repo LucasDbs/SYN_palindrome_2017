@@ -8,8 +8,6 @@
 #include <string.h>
 #include "palindrome.h"
 
-#include <stdio.h>
-
 int check_nb(int nb)
 {
 	int i = 0;
@@ -28,10 +26,10 @@ int is_palindrome(char *str)
 	int i = 0;
 	int a = 0;
 
-	if (str == NULL)
-		return (0);
+	if (str == NULL || str[0] == '\0')
+		return (1);
 	a = strlen(str) - 1;
-	while (a != 0) {
+	while (a >= 0) {
 		if (str[i] != str[a])
 			return (1);
 		a--;

@@ -13,12 +13,15 @@
 int manage_min(arg_s *arg, char **tmp, char *reverse, char *convert)
 {
 	int nb = arg->min;
+	int base = 0;
 
 	arg->min = 0;
 	while (arg->min < nb) {
 		convert = base_transform(*tmp, 10, arg->base, 0);
 		reverse = revstr(convert, 1);
 		*tmp = add_str(convert, reverse, arg->base);
+		base = strtol(*tmp, NULL, arg->base);
+		*tmp = int_to_str(base);
 		arg->it++;
 		arg->min++;
 	}
@@ -28,19 +31,22 @@ int manage_min(arg_s *arg, char **tmp, char *reverse, char *convert)
 int opt_n(arg_s *arg, char *reverse, char *convert)
 {
 	char *tmp = strdup(arg->nb);
+	int base = 0;
 
 	if (tmp == NULL)
 		return (1);
 	manage_min(arg, &tmp, reverse, convert);
 	while (arg->min <= arg->max) {
-		if (is_palindrome(tmp) == 0) {
-			free_all(reverse, convert);
-			return (n_print(tmp, arg->nb, arg->it, arg->base));
-		}
 		convert = base_transform(tmp, 10, arg->base, 0);
 		reverse = revstr(convert, 1);
 		tmp = add_str(convert, reverse, arg->base);
 		arg->it++;
+		if (is_palindrome(tmp) == 0) {
+			free_all(reverse, convert);
+			return (n_print(tmp, arg->nb, arg->it, arg->base));
+		}
+		base = strtol(tmp, NULL, arg->base);
+		tmp = int_to_str(base);
 		arg->min++;
 	}
 	free(tmp);
@@ -53,16 +59,19 @@ int check_t(char *str, arg_s *arg)
 	char *convert = NULL;
 	char *reverse = NULL;
 	char *tmp = strdup(str);
+	int base = 0;
 
 	manage_min(arg, &tmp, reverse, convert);
 	while (arg->min <= arg->max) {
-		if (strcmp(tmp, arg->pal) == 0)
-			return (0);
 		convert = base_transform(tmp, 10, arg->base, 0);
 		reverse = revstr(convert, 1);
 		tmp = add_str(convert, reverse, arg->base);
-		arg->min++;
+		base = strtol(tmp, NULL, arg->base);
+		tmp = int_to_str(base);
 		arg->it++;
+		arg->min++;
+		if (strcmp(tmp, arg->pal) == 0)
+			return (0);
 	}
 	return (1);
 }
